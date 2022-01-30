@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /transactions/{document=**} {
+      
+      // authorization rules
+      allow create: if request.auth != null;
+
+      // user permissions
+      allow read, delete: if request.auth.uid == resource.data.uid
+          
+
+    }
+  }
+}
