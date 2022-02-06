@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react'
-import {projectAuth} from '../firebase/config'
+import {projectAuth, projectFirestore} from '../firebase/config'
 import useAuthContext from './useAuthContext'
 
 const useLogin = () => {
     
     // Context
-    const {loginUser}= useAuthContext()
+    const {loginUser, user}= useAuthContext()
 
     // State Variables
     const [error, setError] = useState(null)
@@ -19,8 +19,6 @@ const useLogin = () => {
     },[])
     
 
-
-
     // Helper function
     const login = async (email, password) => {
         setError(false)
@@ -28,6 +26,12 @@ const useLogin = () => {
 
         try {
             const res = await projectAuth.signInWithEmailAndPassword(email, password)
+
+            // Update User online status on the backend
+            await projectFirestore.collection('users')
+                                  .doc(res.user.uid)
+                                  .update({online: true})
+
             loginUser(res.user)
             // update state
             if(!isCancelled){

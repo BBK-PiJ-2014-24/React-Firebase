@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import Avatar from '../avatar/Avatar'
+import useAuthContext from '../../hooks/useAuthContext'
 import DashboardIcon from '../../assets/dashboard_icon.svg'
 import AddIcon from '../../assets/add_icon.svg'
 import './Sidebar.css'
@@ -7,11 +9,14 @@ import './Sidebar.css'
 
 function Sidebar() {
 
+  const {user} = useAuthContext()
+
   return ( 
     <div className='sidebar'>
         <div className="side-content">
             <div className='user'>
-                <p>Hello User</p>
+                <Avatar src={user.photoURL} />
+                <p>Hello {user.displayName}</p>
             </div>
         </div>
         <nav className='links'>

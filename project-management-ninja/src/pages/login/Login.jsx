@@ -10,9 +10,11 @@ function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const {login, error, isPending} = useLogin()
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
+    login(email, password);
   }
 
   return (
@@ -32,9 +34,6 @@ function Login() {
               onChange={(e)=> setPassword(e.target.value)}
               required
         />
-        {thumbnailError &&
-          <div className='error'>Error: {thumbnailError}</div>
-        }
         {!isPending ? 
           <button className='btn'>Login</button>
           :

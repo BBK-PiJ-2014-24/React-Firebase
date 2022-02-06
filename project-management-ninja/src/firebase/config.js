@@ -22,6 +22,6 @@ const projectAuth = firebase.auth()
 const projectStorage = firebase.storage()
 
 // import timestamp f()
-const timestamp = firebase.Timestamp
+const timestamp = firebase.firestore.Timestamp
 
 export {projectFirestore, projectAuth, projectStorage, timestamp}
