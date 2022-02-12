@@ -81,7 +81,7 @@ function Create() {
 
     await addDocument(project) // add to firestore DB
     if(!response.error){
-      navigate('/')
+      navigate('/dashboard')
     }
   }
 
