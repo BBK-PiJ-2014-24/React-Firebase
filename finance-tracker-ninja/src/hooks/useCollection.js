@@ -1,7 +1,8 @@
 import {useEffect, useState, useRef} from 'react'
 import {projectFirestore} from '../firebase/config'
 
-
+// DB queries to the firestore DB - N.b. create and delete queries are dealt by useFirebaseDB hook
+// ===============================================================================================
 export const useCollection = (collection, _query, _orderBy) => {
     const [documents, setDocuments] = useState(null)
     const [error, setError] = useState(null)

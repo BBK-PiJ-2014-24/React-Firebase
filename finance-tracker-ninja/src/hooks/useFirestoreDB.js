@@ -29,7 +29,8 @@ const firestoreReducer = (state,action) => {
     }
 }
 
-
+// DB queries to add and delete a user's transaction items.
+// =======================================================
 export const useFirestoreDB = (collection) => {
 
     const [response, dispatch] = useReducer(firestoreReducer, initialState)
